@@ -2,555 +2,555 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-    <title>傅蔷薇 · 视觉传达设计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>傅蔷薇 | 个人在线简历</title>
     <style>
-        /* ---------- CSS Variables & Reset ---------- */
         :root {
-            --primary: #4f46e5;
-            --primary-light: #818cf8;
-            --primary-dark: #3730a3;
-            --accent: #f59e0b;
-            --bg: #f8fafc;
-            --bg-card: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #94a3b8;
+            --primary: #4361ee;
+            --primary-light: #5a74f0;
+            --secondary: #f72585;
+            --bg-main: #ffffff;
+            --bg-card: #f8fafc;
+            --text-main: #0f172a;
+            --text-sub: #475569;
             --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-            --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-            --radius: 12px;
-            --transition: 200ms ease;
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --transition: all 0.2s ease;
         }
-
-        /* Dark Mode */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0f172a;
-                --bg-card: #1e293b;
-                --text-primary: #f1f5f9;
-                --text-secondary: #cbd5e1;
-                --text-muted: #64748b;
-                --border: #334155;
-                --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
-                --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.5);
-            }
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --primary-light: #93c5fd;
+            --secondary: #f472b6;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: var(--font-stack);
-            background-color: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: background-color var(--transition), color var(--transition);
-            padding-top: 72px; /* space for fixed nav */
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.65;
+            transition: var(--transition);
         }
-
-        a { color: var(--primary); text-decoration: none; }
-        ul { list-style: none; }
-
-        /* ---------- Utility ---------- */
         .container {
-            max-width: 1024px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 24px 40px;
+            padding: 0 20px;
         }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-            border-left: 4px solid var(--primary);
-            padding-left: 12px;
-        }
-
-        /* ---------- Navigation ---------- */
-        nav {
+        /* 导航栏 */
+        header {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 72px;
-            background: var(--bg-card);
-            backdrop-filter: blur(8px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            backdrop-filter: blur(12px);
+            background-color: rgba(var(--bg-main), 0.8);
             border-bottom: 1px solid var(--border);
+            z-index: 999;
+            transition: var(--transition);
+        }
+        .nav-wrap {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 24px;
-            z-index: 1000;
-            box-shadow: var(--shadow);
+            height: 64px;
         }
-
-        .nav-brand { font-weight: 700; font-size: 1.2rem; color: var(--primary); }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-actions { display: flex; gap: 12px; align-items: center; }
-        
-        .icon-btn {
-            background: transparent; border: 1px solid var(--border);
-            border-radius: 8px; width: 36px; height: 36px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-secondary); cursor: pointer;
-            transition: background var(--transition), color var(--transition);
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
         }
-        .icon-btn:hover { background: var(--bg); color: var(--primary); }
-        .icon-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-        @media (max-width: 640px) {
-            .nav-links { display: none; } /* Hide nav links on mobile, keep actions */
+        .nav-links {
+            display: flex;
+            gap: 24px;
         }
-
-        /* ---------- Hero ---------- */
+        .nav-links a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        button {
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        button:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        /* 主内容区域 */
+        main {
+            margin-top: 88px;
+            padding-bottom: 80px;
+        }
+        section {
+            margin-bottom: 64px;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 22px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        /* Hero区域 */
         .hero {
-            text-align: center;
-            padding: 48px 0 32px;
+            padding: 40px 0;
         }
         .hero h1 {
-            font-size: 3rem; font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.5rem;
             margin-bottom: 12px;
         }
-        .hero p {
-            font-size: 1.1rem; color: var(--text-secondary);
-            max-width: 600px; margin: 0 auto 24px;
+        .hero-desc {
+            color: var(--text-sub);
+            font-size: 1.05rem;
+            max-width: 750px;
+            margin-bottom: 20px;
         }
-        .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; }
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
         }
-        .badge.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
-        
-        .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 24px;
-            border-radius: 8px; font-weight: 600; font-size: 0.95rem;
-            border: 1px solid transparent; cursor: pointer;
-            transition: all var(--transition);
-        }
-        .btn-primary { background: var(--primary); color: #fff; }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
-        .btn-outline { background: transparent; border-color: var(--border); color: var(--text-secondary); }
-        .btn-outline:hover { background: var(--bg); border-color: var(--text-secondary); }
-
-        /* ---------- Cards & Grids ---------- */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-
-        .card {
+        .tag {
+            padding: 5px 14px;
             background: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 24px;
+            border-radius: 99px;
+            font-size: 0.88rem;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: transform var(--transition), box-shadow var(--transition);
         }
-        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-        
-        /* Stats/Highlight */
-        .stats-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 40px; }
-        .stat-item { text-align: center; padding: 16px; border-radius: var(--radius); background: var(--bg-card); border: 1px solid var(--border); }
-        .stat-number { font-size: 2rem; font-weight: 800; color: var(--primary); }
-        .stat-label { font-size: 0.85rem; color: var(--text-secondary); }
-
-        /* ---------- Tabs ---------- */
-        .tabs-container { margin-top: 8px; }
-        .tabs-header {
-            display: flex; gap: 4px; border-bottom: 1px solid var(--border);
-            margin-bottom: 16px; overflow-x: auto; flex-wrap: wrap;
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+        /* 卡片通用样式 */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+        }
+        /* Tab标签页 */
+        .tab-header {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
         }
         .tab-btn {
-            background: transparent; border: none;
-            padding: 12px 20px; font-size: 0.95rem; font-weight: 600;
-            color: var(--text-muted); cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all var(--transition);
-            white-space: nowrap;
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 0;
+            position: relative;
         }
-        .tab-btn:hover { color: var(--text-primary); background: var(--bg); }
-        .tab-btn[aria-selected="true"] {
-            color: var(--primary); border-bottom-color: var(--primary);
+        .tab-btn.active {
+            color: var(--primary);
         }
-        .tab-panel {
-            display: none; animation: fadeIn 0.3s ease;
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
         }
-        .tab-panel[aria-hidden="false"] { display: block; }
-
-        /* Timeline for Experience */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* 时间线 */
         .timeline-item {
-            display: flex; flex-direction: column; gap: 4px;
-            padding-bottom: 20px; border-bottom: 1px dashed var(--border); margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+            margin-bottom: 24px;
+            position: relative;
         }
-        .timeline-item:last-child { border-bottom: none; margin-bottom: 0; }
-        .tl-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
-        .tl-title { font-weight: 700; font-size: 1.1rem; }
-        .tl-company { color: var(--text-secondary); font-weight: 500; }
-        .tl-date { font-size: 0.85rem; color: var(--text-muted); }
-        .tl-desc { margin-top: 8px; color: var(--text-secondary); font-size: 0.95rem; }
-        .tl-desc ul { list-style: disc; padding-left: 20px; margin-top: 6px; }
-
-        /* ---------- Skills Matrix ---------- */
-        .skill-group { margin-bottom: 16px; }
-        .skill-group-title { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
-        .skill-items { display: flex; flex-wrap: wrap; gap: 8px; }
-        .skill-tag {
-            padding: 4px 14px; background: var(--bg); border-radius: 16px;
-            border: 1px solid var(--border); font-size: 0.85rem; color: var(--text-primary);
+        .timeline-item::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            position: absolute;
+            left: -6px;
+            top: 4px;
         }
-
-        /* ---------- Footer ---------- */
-        footer {
-            text-align: center; padding: 32px 0 16px;
-            border-top: 1px solid var(--border); margin-top: 32px;
-            color: var(--text-muted); font-size: 0.85rem;
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.1rem;
         }
-
-        /* ---------- Animations ---------- */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 0.4s ease; }
-        @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-
-        /* ---------- Print ---------- */
+        .timeline-time {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .timeline-text {
+            color: var(--text-sub);
+        }
+        .cert-link {
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        /* 返回顶部 */
+        .back-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .back-top.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        /* 打印样式 */
         @media print {
-            body { padding-top: 0; background: #fff; color: #000; }
-            nav, .icon-btn, #back-to-top { display: none !important; }
-            .card { border: 1px solid #ddd; box-shadow: none; transform: none !important; }
-            .tab-panel { display: block !important; }
-            .tabs-header { display: none; } /* Print all tab content */
-            .container { max-width: 100%; padding: 20px; }
-            .hero h1 { -webkit-text-fill-color: #000; background: none; color: #000; }
+            header, .nav-buttons, .back-top, .modal-wrap {
+                display: none !important;
+            }
+            main {
+                margin-top: 0;
+            }
+            body {
+                background: #fff !important;
+                color: #000 !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+            }
         }
-
-        /* ---------- Responsive ---------- */
+        /* 移动端适配 */
         @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.25rem; }
-            .stats-wrapper { grid-template-columns: 1fr 1fr; }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .contact-row {
+                flex-direction: column;
+            }
+        }
+        /* 证书弹窗样式 */
+        .modal-wrap {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-wrap.show {
+            display: flex;
+        }
+        .modal-box {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+        .modal-close {
+            position: absolute;
+            top: -36px;
+            right: 0;
+            color: #fff;
+            font-size: 26px;
+            cursor: pointer;
+        }
+        .modal-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-brand">蔷薇·Fu</div>
-        <div class="nav-links">
-            <a href="#highlights">亮点</a>
-            <a href="#experience">经历</a>
-            <a href="#projects">项目</a>
-            <a href="#skills">技能</a>
-        </div>
-        <div class="nav-actions">
-            <button class="icon-btn" id="print-btn" aria-label="打印简历">
-                <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M18 9h3v6h-3"></path><path d="M6 9H3v6h3"></path><rect x="6" y="15" width="12" height="6"></rect><line x1="18" y1="12" x2="18" y2="12"></line></svg>
-            </button>
-            <!-- Theme toggle handled by system preference -->
-        </div>
-    </nav>
-
-    <main class="container">
-        <!-- Hero -->
-        <section class="hero fade-in">
-            <h1>傅蔷薇</h1>
-            <p>准大一新生 · 视觉传达设计。兼具扎实的审美基础、敏锐的观察力与强烈的创作热情，致力于用视觉语言讲好故事。</p>
-            <div class="hero-tags">
-                <span class="badge primary">📞 19558184510</span>
-                <span class="badge primary">✉️ 19558184510@163.com</span>
-                <span class="badge">📍 杭州</span>
-                <span class="badge">🎨 视觉传达</span>
+    <header>
+        <div class="container nav-wrap">
+            <div class="nav-logo">傅蔷薇 · 在线简历</div>
+            <nav class="nav-links">
+                <a href="#about">简介</a>
+                <a href="#education">教育</a>
+                <a href="#experience">实践经历</a>
+                <a href="#cert">证书</a>
+                <a href="#skill">技能特长</a>
+            </nav>
+            <div class="nav-buttons">
+                <button id="themeBtn">🌓 切换模式</button>
+                <button id="printBtn">🖨️ 打印简历</button>
             </div>
-            <div class="hero-actions">
-                <button class="btn btn-primary" id="copy-email">复制邮箱</button>
+        </div>
+    </header>
+    <main class="container">
+        <section class="hero" id="about">
+            <h1>傅蔷薇</h1>
+            <p class="hero-desc">
+                绍兴大学视觉传达设计准大一新生，拥有扎实审美基础与视觉创作能力，同时取得阿里巴巴达摩院人工智能训练师初级&高级认证。擅长平面视觉设计、纪实摄影、短视频创作，具备完整项目策划与落地执行经验，持续探索设计与AI结合的创作方向。
+            </p>
+            <div class="tag-group">
+                <span class="tag">视觉传达设计</span>
+                <span class="tag">平面设计</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">纪实摄影</span>
+                <span class="tag">短视频剪辑</span>
+                <span class="tag">AI训练师</span>
+            </div>
+            <div class="contact-row">
+                <a class="contact-btn" href="tel:19558184510">📞 19558184510</a>
+                <a class="contact-btn" id="copyMailBtn">📧 复制邮箱</a>
+                <span class="contact-btn">📍 杭州</span>
             </div>
         </section>
-
-        <!-- Highlights / Stats -->
-        <section id="highlights" class="section-title">亮点成果</section>
-        <div class="stats-wrapper" id="stats-container">
-            <!-- Rendered by JS -->
-        </div>
-
-        <!-- Experience (Tabs) -->
-        <section id="experience" class="section-title">实践经历</section>
-        <div class="card tabs-container" id="experience-tabs">
-            <div class="tabs-header" role="tablist" aria-label="经历分类">
-                <!-- Rendered by JS -->
-            </div>
-            <div id="experience-panels">
-                <!-- Rendered by JS -->
-            </div>
-        </div>
-
-        <!-- Projects (Tabs) -->
-        <section id="projects" class="section-title">项目与作品</section>
-        <div class="card tabs-container" id="projects-tabs">
-            <div class="tabs-header" role="tablist" aria-label="项目分类">
-                <!-- Rendered by JS -->
-            </div>
-            <div id="projects-panels">
-                <!-- Rendered by JS -->
-            </div>
-        </div>
-
-        <!-- Skills & Education Grid -->
-        <div class="grid-2" style="margin-top: 32px;">
-            <section id="skills">
-                <div class="section-title">技能矩阵</div>
-                <div class="card" id="skills-container">
-                    <!-- Rendered by JS -->
-                </div>
-            </section>
-            <section id="education">
-                <div class="section-title">教育与证书</div>
-                <div class="card" id="edu-container">
-                    <!-- Rendered by JS -->
-                </div>
-            </section>
-        </div>
-
-        <footer>
-            <p>© 2026 傅蔷薇 · 在线简历 &nbsp;|&nbsp; 最后更新: 2026年8月</p>
-        </footer>
-    </main>
-
-    <!-- Back to Top -->
-    <button id="back-to-top" style="position: fixed; bottom: 24px; right: 24px; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); box-shadow: var(--shadow); cursor: pointer; display: none; justify-content: center; align-items: center; font-size: 1.2rem; transition: opacity var(--transition);" aria-label="返回顶部">
-        ↑
-    </button>
-
-    <script>
-        /**
-         * Resume Data Definition
-         */
-        const resume = {
-            meta: { name: "傅蔷薇", title: "视觉传达设计 · 准大一新生", location: "杭州", email: "19558184510@163.com", phone: "19558184510" },
-            highlights: [
-                { number: "300+", label: "日常手绘素材" },
-                { number: "120+", label: "纪实摄影作品" },
-                { number: "5+", label: "省份采风足迹" },
-                { number: "30+", label: "年均阅读量(本)" }
-            ],
-            experience: {
-                "校园实践": [
-                    { title: "校园文化节主视觉设计", company: "高中学生会", date: "2025.09 - 2025.10", 
-                      desc: "主导校园文化节主视觉海报设计。负责从概念构思到视觉落地的全流程，协调团队分工，确保活动视觉统一且具有感染力。" },
-                    { title: "校园公众号内容创作", company: "校园传媒中心", date: "2025.03 - 2026.06", 
-                      desc: "参与校园传媒公众号的剪辑创作与文案策划。通过视听语言提升公众号内容的传播力与审美水平。" }
-                ],
-                "个人项目": [
-                    { title: "十佳人物纪实摄影", company: "个人摄影项目", date: "2026.04 - 2026.05", 
-                      desc: "策划并执行以校园人文生活、校园十佳人物为主题的纪实摄影项目。拍摄照片120余张，筛选并整理成短视频发布至校园公众号，锻炼了叙事能力。" }
-                ]
-            },
-            projects: {
-                "视觉设计": [
-                    { name: "校园文化节主视觉", desc: "运用平面构成与色彩心理学，设计了一套符合校园文化调性的视觉系统，包含海报、展板及周边物料。" },
-                    { name: "日常手绘素材库", desc: "长期保持速写与色彩练习，擅长水彩与马克笔表现，积累日常手绘素材300+张，作为视觉设计的灵感源泉。" }
-                ],
-                "数字媒体": [
-                    { name: "《光影校园》纪实短片", desc: "利用手机及入门摄影设备，记录校园真实生活。剪辑节奏舒缓，配乐贴合情绪，展现静默的人文力量。" }
-                ]
-            },
-            skills: {
-                "设计领域": ["平面设计", "品牌形象策划", "UI/UX设计", "数字媒体艺术", "摄影与影像表达"],
-                "工具掌握": ["Photoshop", "Illustrator", "Premiere Pro", "Figma", "Procreate"]
-            },
-            education: [
-                { school: "绍兴大学", major: "视觉传达设计 (本科)", status: "准大一新生, 录取成绩优异。主修课程涵盖平面设计、品牌形象策划、数字媒体艺术等。", date: "2026 - 2030 (预计)" }
-            ],
-            certificates: [
-                { name: "阿里巴巴达摩院初级人工智能训练师", date: "2026.08 - 2027.08" },
-                { name: "阿里巴巴达摩院高级人工智能训练师", date: "2026.08 - 2027.08" }
-            ]
-        };
-
-        /** 
-         * DOM Renderer 
-         */
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Render Highlights
-            const statsContainer = document.getElementById('stats-container');
-            resume.highlights.forEach(item => {
-                statsContainer.innerHTML += `
-                    <div class="stat-item">
-                        <div class="stat-number">${item.number}</div>
-                        <div class="stat-label">${item.label}</div>
-                    </div>
-                `;
-            });
-
-            // 2. Render Tabs: Experience
-            renderTabs('experience-tabs', 'experience-panels', resume.experience, (item) => `
+        <section id="education">
+            <h2 class="section-title">教育背景</h2>
+            <div class="card">
                 <div class="timeline-item">
-                    <div class="tl-header">
-                        <span class="tl-title">${item.title}</span>
-                        <span class="tl-date">${item.date}</span>
+                    <div class="timeline-title">绍兴大学 | 视觉传达设计（本科）</div>
+                    <div class="timeline-time">准大一新生</div>
+                    <div class="timeline-text">
+                        主修方向：平面设计、品牌形象策划、数字媒体艺术、UI/UX设计、摄影与影像表达。<br>
+                        入学成绩优异，具备扎实审美基础与创作热情，持续关注当代视觉文化与前沿设计趋势。
                     </div>
-                    <div class="tl-company">${item.company}</div>
-                    <div class="tl-desc">${item.desc}</div>
                 </div>
-            `);
-
-            // 3. Render Tabs: Projects
-            renderTabs('projects-tabs', 'projects-panels', resume.projects, (item) => `
-                <div class="card" style="margin-bottom: 16px; background: var(--bg); border-color: transparent;">
-                    <h4 style="margin-bottom: 4px; color: var(--primary);">${item.name}</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">${item.desc}</p>
+            </div>
+        </section>
+        <section id="experience">
+            <h2 class="section-title">实践经历</h2>
+            <div class="tab-header">
+                <button class="tab-btn active" data-tab="campus">校园项目</button>
+            </div>
+            <div class="tab-content active" id="tab-campus">
+                <div class="card">
+                    <div class="timeline-item">
+                        <div class="timeline-title">校园文化节主视觉海报设计</div>
+                        <div class="timeline-text">独立完成校园文化节主视觉海报方案设计，输出定稿物料，用于校园线下宣传展示。</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">校园传媒公众号视频剪辑创作</div>
+                        <div class="timeline-text">参与校园公众号短视频剪辑、图文排版，负责校园活动影像素材后期处理。</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">校园人文纪实摄影项目（校园十佳人物主题）</div>
+                        <div class="timeline-text">
+                            独立策划并执行完整纪实摄影项目，累计拍摄纪实照片120余张；筛选整理素材制作短视频，发布于校园公众号。<br>
+                            锻炼视觉叙事、人物观察、项目统筹能力，积累大量真实人文视觉素材。
+                        </div>
+                    </div>
                 </div>
-            `);
+            </div>
+        </section>
+        <section id="cert">
+            <h2 class="section-title">证书与资质</h2>
+            <div class="card">
+                <div class="timeline-item">
+                    <div class="timeline-title">
+                        <span class="cert-link" data-cert="junior">阿里巴巴达摩院 · 初级人工智能训练师证书</span>
+                    </div>
+                    <div class="timeline-time">2026-08-14 至 2027-08-14</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">
+                        <span class="cert-link" data-cert="advanced">阿里巴巴达摩院 · 高级人工智能训练师证书</span>
+                    </div>
+                    <div class="timeline-time">2026-08-14 至 2027-08-14</div>
+                </div>
+            </div>
+        </section>
+        <section id="skill">
+            <h2 class="section-title">兴趣特长与个人能力</h2>
+            <div class="card">
+                <div class="timeline-item">
+                    <div class="timeline-title">绘画创作</div>
+                    <div class="timeline-text">长期坚持速写、色彩练习，擅长水彩、马克笔手绘，累计手绘素材300+张。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">旅行与人文摄影</div>
+                    <div class="timeline-text">足迹覆盖国内5个省份，持续用镜头记录地域文化、人文纪实瞬间。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">阅读积累</div>
+                    <div class="timeline-text">年均阅读约30本，内容涵盖设计理论、艺术史、文学随笔，持续拓宽跨学科视野。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">综合素养</div>
+                    <div class="timeline-text">优秀自我管理、审美敏感度、项目落地执行力；积极为大学专业学习、各类学科竞赛储备能力。</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- 证书弹窗模块 -->
+    <div class="modal-wrap" id="certModal">
+        <div class="modal-box">
+            <span class="modal-close" id="modalClose">×</span>
+            <img class="modal-img" id="modalImg">
+        </div>
+    </div>
+    <a href="#" class="back-top" id="backTopBtn">↑</a>
+    <script>
+        const resume = {
+            name: "傅蔷薇",
+            phone: "19558184510",
+            email: "19558184510@163.com",
+            location: "杭州"
+        }
 
-            // 4. Render Skills
-            const skillsContainer = document.getElementById('skills-container');
-            for (const [group, items] of Object.entries(resume.skills)) {
-                let html = `<div class="skill-group"><div class="skill-group-title">${group}</div><div class="skill-items">`;
-                items.forEach(skill => {
-                    html += `<span class="skill-tag">${skill}</span>`;
-                });
-                html += `</div></div>`;
-                skillsContainer.innerHTML += html;
+        // 本地图片路径，无任何外网图片/网站链接
+        const certFile = {
+            advanced: "./advanced.png",
+            junior: "./junior.png"
+        }
+
+        // 弹窗DOM元素
+        const certModal = document.getElementById('certModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalClose = document.getElementById('modalClose');
+
+        // 关闭弹窗
+        function closeModal() {
+            certModal.classList.remove('show');
+            modalImg.src = "";
+        }
+        // 打开弹窗加载证书图片
+        function openCertImg(path) {
+            modalImg.src = path;
+            certModal.classList.add('show');
+        }
+        // 点击关闭按钮关闭弹窗
+        modalClose.onclick = closeModal;
+        // 点击遮罩空白区域关闭弹窗
+        certModal.onclick = (e) => {
+            if (e.target === certModal) closeModal();
+        }
+
+        // 深色/浅色主题切换
+        const themeBtn = document.getElementById('themeBtn');
+        function toggleTheme() {
+            const html = document.documentElement;
+            if(html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme','light');
+            } else {
+                html.setAttribute('data-theme','dark');
+                localStorage.setItem('theme','dark');
             }
-
-            // 5. Render Education & Certificates
-            const eduContainer = document.getElementById('edu-container');
-            let eduHtml = '<div class="skill-group"><div class="skill-group-title">🎓 教育背景</div>';
-            resume.education.forEach(edu => {
-                eduHtml += `
-                    <div style="margin-bottom: 12px;">
-                        <div><strong>${edu.school}</strong> <span style="color: var(--text-muted); font-size:0.9rem;">${edu.date}</span></div>
-                        <div style="color: var(--text-secondary); font-size:0.9rem;">${edu.major}</div>
-                        <div style="color: var(--text-secondary); font-size:0.85rem; margin-top:4px;">${edu.status}</div>
-                    </div>
-                `;
-            });
-            eduHtml += '</div><div class="skill-group"><div class="skill-group-title">📜 证书</div>';
-            resume.certificates.forEach(cert => {
-                eduHtml += `
-                    <div style="display:flex; justify-content:space-between; font-size:0.9rem; padding: 4px 0; border-bottom: 1px dashed var(--border);">
-                        <span>${cert.name}</span>
-                        <span style="color: var(--text-muted);">${cert.date}</span>
-                    </div>
-                `;
-            });
-            eduHtml += '</div>';
-            eduContainer.innerHTML = eduHtml;
-
-            // 6. Interaction: Copy Email (JS拼接防爬虫)
-            document.getElementById('copy-email').addEventListener('click', () => {
-                const email = '19558184510' + '@' + '163.com';
-                navigator.clipboard.writeText(email).then(() => {
-                    alert('邮箱已复制: ' + email);
-                }).catch(() => {
-                    // Fallback
-                    const input = document.createElement('input');
-                    input.value = email;
-                    document.body.appendChild(input);
-                    input.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(input);
-                    alert('邮箱已复制: ' + email);
-                });
-            });
-
-            // 7. Interaction: Print
-            document.getElementById('print-btn').addEventListener('click', () => window.print());
-
-            // 8. Interaction: Back to Top
-            const backBtn = document.getElementById('back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backBtn.style.display = 'flex';
-                } else {
-                    backBtn.style.display = 'none';
-                }
-            });
-            backBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // 9. Smooth Anchor scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            });
-        });
-
-        /**
-         * Helper: Render Tabs (ARIA compliant)
-         */
-        function renderTabs(headerId, panelsId, data, renderItemFn) {
-            const headerEl = document.getElementById(headerId);
-            const panelsEl = document.getElementById(panelsId);
-            const keys = Object.keys(data);
-            let tabIndex = 0;
-
-            keys.forEach((key, index) => {
-                // Render Tab Button
-                const btn = document.createElement('button');
-                btn.className = 'tab-btn';
-                btn.setAttribute('role', 'tab');
-                btn.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-                btn.setAttribute('aria-controls', `panel-${headerId}-${index}`);
-                btn.setAttribute('tabindex', index === 0 ? '0' : '-1');
-                btn.id = `tab-${headerId}-${index}`;
-                btn.textContent = key;
-                headerEl.appendChild(btn);
-
-                // Render Tab Panel
-                const panel = document.createElement('div');
-                panel.className = 'tab-panel';
-                panel.setAttribute('role', 'tabpanel');
-                panel.id = `panel-${headerId}-${index}`;
-                panel.setAttribute('aria-labelledby', `tab-${headerId}-${index}`);
-                panel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
-                
-                const items = data[key];
-                items.forEach(item => {
-                    panel.innerHTML += renderItemFn(item);
-                });
-                panelsEl.appendChild(panel);
-
-                // Click event
-                btn.addEventListener('click', () => setActiveTab(headerId, index));
-                // Keyboard navigation
-                btn.addEventListener('keydown', (e) => {
-                    const tabList = headerEl.querySelectorAll('.tab-btn');
-                    const currentIdx = Array.from(tabList).indexOf(e.target);
-                    let newIdx = currentIdx;
-                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                        newIdx = (currentIdx + 1) % tabList.length;
-                    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                        newIdx = (currentIdx - 1 + tabList.length) % tabList.length;
-                    } else { return; }
-                    e.preventDefault();
-                    tabList[newIdx].focus();
-                    setActiveTab(headerId, newIdx);
-                });
-            });
+        }
+        themeBtn.onclick = toggleTheme;
+        if(localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme','dark');
         }
 
-        function setActiveTab(containerId, activeIndex) {
-            const header = document.getElementById(containerId);
-            const panels = document.getElementById(containerId.replace('tabs', 'panels')).children;
-            const tabs = header.querySelectorAll('.tab-btn');
+        // 打印简历
+        document.getElementById('printBtn').onclick = () => window.print();
 
-            tabs.forEach((tab, i) => {
-                const isActive = i === activeIndex;
-                tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-                tab.setAttribute('tabindex', isActive ? '0' : '-1');
-                panels[i].setAttribute('aria-hidden', isActive ? 'false' : 'true');
-            });
+        // Tab切换逻辑
+        document.querySelectorAll('.tab-btn').forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                const tabId = btn.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-'+tabId).classList.add('active');
+            })
+        })
+
+        // 一键复制邮箱
+        document.getElementById('copyMailBtn').onclick = async ()=>{
+            try{
+                await navigator.clipboard.writeText(resume.email);
+                alert("邮箱复制成功：" + resume.email);
+            }catch(e){
+                prompt("复制邮箱", resume.email);
+            }
         }
+
+        // 返回顶部按钮
+        const backTopBtn = document.getElementById('backTopBtn');
+        window.addEventListener('scroll',()=>{
+            if(window.scrollY > 400) {
+                backTopBtn.classList.add('show');
+            } else {
+                backTopBtn.classList.remove('show');
+            }
+        })
+        backTopBtn.onclick = (e)=>{
+            e.preventDefault();
+            window.scrollTo({top:0,behavior:'smooth'});
+        }
+
+        // 证书点击唤起弹窗预览本地图片
+        document.querySelectorAll('.cert-link').forEach(el=>{
+            el.onclick = (e)=>{
+                e.preventDefault();
+                const type = el.dataset.cert;
+                openCertImg(certFile[type]);
+            }
+        })
     </script>
 </body>
 </html>
